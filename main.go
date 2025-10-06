@@ -12,7 +12,7 @@ func main() {
 	plugin.Serve(&plugin.ServeOpts{
 		RuleSet: &terraform.RuleSet{
 			BuiltinRuleSet: tflint.BuiltinRuleSet{
-				Name:    "terraform",
+				Name:    "opentofu",
 				Version: project.Version,
 			},
 			PresetRules: rules.PresetRules,

@@ -106,8 +106,8 @@ func (r *TerraformRequiredVersionRule) Check(runner tflint.Runner) error {
 
 	moduleDirectory := filepath.Dir(file)
 
-	// If there are multiple files, look for terraform.tf or main.tf (in that order)
-	for _, basename := range []string{"terraform.tf", "main.tf"} {
+	// If there are multiple files, look for opentofu.tofu, main.tofu, terraform.tf or main.tf (in that order)
+	for _, basename := range []string{"opentofu.tofu", "main.tofu", "terraform.tf", "main.tf"} {
 		filename := filepath.Join(moduleDirectory, basename)
 		if _, ok := files[filename]; ok {
 			return r.emitIssue(hcl.Range{
