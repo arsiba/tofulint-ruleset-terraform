@@ -11,9 +11,12 @@ import (
 )
 
 const (
-	filenameMain      = "main.tf"
-	filenameVariables = "variables.tf"
-	filenameOutputs   = "outputs.tf"
+	filenameMain          = "main.tf"
+	filenameTofuMain      = "main.tofu"
+	filenameVariables     = "variables.tf"
+	filenameTofuVariables = "variables.tofu"
+	filenameOutputs       = "outputs.tf"
+	filenameTofuOutputs   = "outputs.tofu"
 )
 
 // TerraformStandardModuleStructureRule checks whether modules adhere to Terraform's standard module structure
@@ -120,12 +123,12 @@ func (r *TerraformStandardModuleStructureRule) checkFiles(runner tflint.Runner, 
 		files[filepath.Base(name)] = file
 	}
 
-	if files[filenameMain] == nil {
+	if files[filenameTofuMain] == nil && files[filenameMain] == nil {
 		if err := runner.EmitIssue(
 			r,
-			fmt.Sprintf("Module should include a %s file as the primary entrypoint", filenameMain),
+			fmt.Sprintf("Module should include a %s or %s file as the primary entrypoint", filenameTofuMain, filenameMain),
 			hcl.Range{
-				Filename: filepath.Join(dir, filenameMain),
+				Filename: filepath.Join(dir, filenameTofuMain),
 				Start:    hcl.InitialPos,
 			},
 		); err != nil {
@@ -133,12 +136,12 @@ func (r *TerraformStandardModuleStructureRule) checkFiles(runner tflint.Runner, 
 		}
 	}
 
-	if files[filenameVariables] == nil && len(blocks.ByType()["variable"]) == 0 {
+	if files[filenameVariables] == nil && files[filenameTofuVariables] == nil && len(blocks.ByType()["variable"]) == 0 {
 		if err := runner.EmitIssue(
 			r,
-			fmt.Sprintf("Module should include an empty %s file", filenameVariables),
+			fmt.Sprintf("Module should include an empty %s or %s file", filenameVariables, filenameTofuVariables),
 			hcl.Range{
-				Filename: filepath.Join(dir, filenameVariables),
+				Filename: filepath.Join(dir, filenameTofuVariables),
 				Start:    hcl.InitialPos,
 			},
 		); err != nil {
@@ -146,12 +149,12 @@ func (r *TerraformStandardModuleStructureRule) checkFiles(runner tflint.Runner, 
 		}
 	}
 
-	if files[filenameOutputs] == nil && len(blocks.ByType()["output"]) == 0 {
+	if files[filenameTofuOutputs] == nil && files[filenameOutputs] == nil && len(blocks.ByType()["output"]) == 0 {
 		if err := runner.EmitIssue(
 			r,
-			fmt.Sprintf("Module should include an empty %s file", filenameOutputs),
+			fmt.Sprintf("Module should include an empty %s or %s file", filenameTofuOutputs, filenameOutputs),
 			hcl.Range{
-				Filename: filepath.Join(dir, filenameOutputs),
+				Filename: filepath.Join(dir, filenameTofuOutputs),
 				Start:    hcl.InitialPos,
 			},
 		); err != nil {
@@ -163,10 +166,16 @@ func (r *TerraformStandardModuleStructureRule) checkFiles(runner tflint.Runner, 
 
 func (r *TerraformStandardModuleStructureRule) checkVariables(runner tflint.Runner, variables hclext.Blocks) error {
 	for _, variable := range variables {
-		if filename := variable.DefRange.Filename; r.shouldMove(filename, filenameVariables) {
+		filename := variable.DefRange.Filename
+		if r.shouldMove(filename, filenameTofuVariables) || r.shouldMove(filename, filenameVariables) {
+			target := filenameVariables
+			if r.shouldMove(filename, filenameTofuVariables) {
+				target = filenameTofuVariables
+			}
+
 			if err := runner.EmitIssue(
 				r,
-				fmt.Sprintf("variable %q should be moved from %s to %s", variable.Labels[0], filename, filenameVariables),
+				fmt.Sprintf("variable %q should be moved from %s to %s", variable.Labels[0], filename, target),
 				variable.DefRange,
 			); err != nil {
 				return err
@@ -178,10 +187,16 @@ func (r *TerraformStandardModuleStructureRule) checkVariables(runner tflint.Runn
 
 func (r *TerraformStandardModuleStructureRule) checkOutputs(runner tflint.Runner, outputs hclext.Blocks) error {
 	for _, output := range outputs {
-		if filename := output.DefRange.Filename; r.shouldMove(filename, filenameOutputs) {
+		filename := output.DefRange.Filename
+		if r.shouldMove(filename, filenameTofuOutputs) || r.shouldMove(filename, filenameOutputs) {
+			target := filenameOutputs
+			if r.shouldMove(filename, filenameTofuOutputs) {
+				target = filenameTofuOutputs
+			}
+
 			if err := runner.EmitIssue(
 				r,
-				fmt.Sprintf("output %q should be moved from %s to %s", output.Labels[0], filename, filenameOutputs),
+				fmt.Sprintf("output %q should be moved from %s to %s", output.Labels[0], filename, target),
 				output.DefRange,
 			); err != nil {
 				return err
