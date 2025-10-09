@@ -1,4 +1,4 @@
-module github.com/terraform-linters/tflint-ruleset-terraform
+module github.com/arsiba/tofulint-ruleset-terraform
 
 go 1.24.5
 

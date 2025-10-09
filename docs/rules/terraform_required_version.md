@@ -26,7 +26,7 @@ $ tflint
 
 Warning: terraform "required_version" attribute is required
 
-Reference: https://github.com/terraform-linters/tflint-ruleset-terraform/blob/v0.1.0/docs/rules/terraform_required_version.md 
+Reference: https://github.com/arsiba/tofulint-ruleset-terraform/blob/v0.1.0/docs/rules/terraform_required_version.md 
 ```
 
 ## Why

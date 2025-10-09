@@ -6,7 +6,7 @@ Terraform Language rules implement recommendations from the [Terraform Language 
 
 In rare circumstances, we may also accept rules that detect language usage errors that are _not_ already detected by `terraform validate`. 
 
-If you are unsure whether your proposed rule meets these criteria, [open a discussion](https://github.com/terraform-linters/tflint-ruleset-terraform/discussions/new?category=ideas) thread first before authoring a pull request.
+If you are unsure whether your proposed rule meets these criteria, [open a discussion](https://github.com/arsiba/tofulint-ruleset-terraform/discussions/new?category=ideas) thread first before authoring a pull request.
 
 ## Authoring a Rule
 
@@ -16,4 +16,4 @@ Each rule should have:
 * Tests that check expected issues against different Terraform configurations to cover applicable cases
 * Documentation explaining the rule, its motivation, and how users should fix their configuration
 
-You will also need to add your rule to applicable [presets](https://github.com/terraform-linters/tflint-ruleset-terraform/blob/main/rules/preset.go).
+You will also need to add your rule to applicable [presets](https://github.com/arsiba/tofulint-ruleset-terraform/blob/main/rules/preset.go).

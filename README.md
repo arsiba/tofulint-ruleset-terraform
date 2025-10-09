@@ -1,6 +1,6 @@
 # TFLint Ruleset for Terraform Language
-[![Build Status](https://github.com/terraform-linters/tflint-ruleset-terraform/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/terraform-linters/tflint-ruleset-terraform/actions)
-[![GitHub release](https://img.shields.io/github/release/terraform-linters/tflint-ruleset-terraform.svg)](https://github.com/terraform-linters/tflint-ruleset-terraform/releases/latest)
+[![Build Status](https://github.com/arsiba/tofulint-ruleset-terraform/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/arsiba/tofulint-ruleset-terraform/actions)
+[![GitHub release](https://img.shields.io/github/release/arsiba/tofulint-ruleset-terraform.svg)](https://github.com/arsiba/tofulint-ruleset-terraform/releases/latest)
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-blue.svg)](LICENSE)
 
 TFLint ruleset plugin for Terraform Language
@@ -28,7 +28,7 @@ If you want to use a version different from the built-in version, you can declar
 plugin "terraform" {
     enabled = true
     version = "0.13.0"
-    source  = "github.com/terraform-linters/tflint-ruleset-terraform"
+    source  = "github.com/arsiba/tofulint-ruleset-terraform"
 }
 ```
 
