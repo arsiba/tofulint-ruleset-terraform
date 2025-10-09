@@ -27,25 +27,25 @@ func Test_TerraformStandardModuleStructureRule(t *testing.T) {
 			Expected: helper.Issues{
 				{
 					Rule:    NewTerraformStandardModuleStructureRule(),
-					Message: "Module should include a main.tf file as the primary entrypoint",
+					Message: "Module should include a main.tofu or main.tf file as the primary entrypoint",
 					Range: hcl.Range{
-						Filename: "main.tf",
+						Filename: "main.tofu",
 						Start:    hcl.InitialPos,
 					},
 				},
 				{
 					Rule:    NewTerraformStandardModuleStructureRule(),
-					Message: "Module should include an empty variables.tf file",
+					Message: "Module should include an empty variables.tf or variables.tofu file",
 					Range: hcl.Range{
-						Filename: "variables.tf",
+						Filename: "variables.tofu",
 						Start:    hcl.InitialPos,
 					},
 				},
 				{
 					Rule:    NewTerraformStandardModuleStructureRule(),
-					Message: "Module should include an empty outputs.tf file",
+					Message: "Module should include an empty outputs.tofu or outputs.tf file",
 					Range: hcl.Range{
-						Filename: "outputs.tf",
+						Filename: "outputs.tofu",
 						Start:    hcl.InitialPos,
 					},
 				},
@@ -62,10 +62,25 @@ variable "v" {}
 			Expected: helper.Issues{
 				{
 					Rule:    NewTerraformStandardModuleStructureRule(),
-					Message: "Module should include an empty outputs.tf file",
+					Message: "Module should include an empty outputs.tofu or outputs.tf file",
 					Range: hcl.Range{
-						Filename: filepath.Join("foo", "outputs.tf"),
+						Filename: filepath.Join("foo", "outputs.tofu"),
 						Start:    hcl.InitialPos,
+					},
+				},
+				{
+					Rule:    NewTerraformStandardModuleStructureRule(),
+					Message: `variable "v" should be moved from foo/variables.tf to variables.tofu`,
+					Range: hcl.Range{
+						Filename: "foo/variables.tf",
+						Start: hcl.Pos{
+							Line:   2,
+							Column: 1,
+						},
+						End: hcl.Pos{
+							Line:   2,
+							Column: 13,
+						},
 					},
 				},
 			},
@@ -82,7 +97,7 @@ variable "v" {}
 			Expected: helper.Issues{
 				{
 					Rule:    NewTerraformStandardModuleStructureRule(),
-					Message: `variable "v" should be moved from main.tf to variables.tf`,
+					Message: `variable "v" should be moved from main.tf to variables.tofu`,
 					Range: hcl.Range{
 						Filename: "main.tf",
 						Start: hcl.Pos{
@@ -109,7 +124,7 @@ output "o" { value = null }
 			Expected: helper.Issues{
 				{
 					Rule:    NewTerraformStandardModuleStructureRule(),
-					Message: `output "o" should be moved from main.tf to outputs.tf`,
+					Message: `output "o" should be moved from main.tf to outputs.tofu`,
 					Range: hcl.Range{
 						Filename: "main.tf",
 						Start: hcl.Pos{
