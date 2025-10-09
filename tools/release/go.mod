@@ -1,4 +1,4 @@
-module github.com/arsiba/tofulint-ruleset-terraform/tools/release
+module github.com/arsiba/tofulint-ruleset-opentofu/tools/release
 
 go 1.24.1
 

@@ -7,8 +7,8 @@ import (
 	"strings"
 
 	"github.com/Masterminds/semver/v3"
-	"github.com/arsiba/tofulint-ruleset-terraform/project"
-	"github.com/arsiba/tofulint-ruleset-terraform/terraform"
+	"github.com/arsiba/tofulint-ruleset-opentofu/project"
+	"github.com/arsiba/tofulint-ruleset-opentofu/terraform"
 	"github.com/hashicorp/go-getter"
 	"github.com/terraform-linters/tflint-plugin-sdk/tflint"
 )

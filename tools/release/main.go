@@ -147,8 +147,8 @@ func checkGitStatus() error {
 	if err := execCommand(stdout, "git", "config", "--get", "remote.origin.url"); err != nil {
 		return err
 	}
-	if !strings.Contains(strings.TrimSpace(stdout.String()), "arsiba/tofulint-ruleset-terraform") {
-		return fmt.Errorf("remote.origin is not arsiba/tofulint-ruleset-terraform, got %s", strings.TrimSpace(stdout.String()))
+	if !strings.Contains(strings.TrimSpace(stdout.String()), "arsiba/tofulint-ruleset-opentofu") {
+		return fmt.Errorf("remote.origin is not arsiba/tofulint-ruleset-opentofu, got %s", strings.TrimSpace(stdout.String()))
 	}
 	return nil
 }

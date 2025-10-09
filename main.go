@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/arsiba/tofulint-ruleset-terraform/project"
-	"github.com/arsiba/tofulint-ruleset-terraform/rules"
-	"github.com/arsiba/tofulint-ruleset-terraform/terraform"
+	"github.com/arsiba/tofulint-ruleset-opentofu/project"
+	"github.com/arsiba/tofulint-ruleset-opentofu/rules"
+	"github.com/arsiba/tofulint-ruleset-opentofu/terraform"
 	"github.com/terraform-linters/tflint-plugin-sdk/plugin"
 	"github.com/terraform-linters/tflint-plugin-sdk/tflint"
 )

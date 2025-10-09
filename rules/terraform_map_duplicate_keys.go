@@ -3,7 +3,7 @@ package rules
 import (
 	"fmt"
 
-	"github.com/arsiba/tofulint-ruleset-terraform/project"
+	"github.com/arsiba/tofulint-ruleset-opentofu/project"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/terraform-linters/tflint-plugin-sdk/logger"
@@ -82,7 +82,7 @@ func (r *TerraformMapDuplicateKeysRule) checkObjectConsExpr(e hcl.Expression, ru
 			if err != nil {
 				// When a key fails to evaluate, ignore the key and continue processing rather than terminating with an error.
 				// This is due to a limitation that expressions with different scopes, such as for expressions, cannot be evaluated.
-				// @see https://github.com/arsiba/tofulint-ruleset-terraform/issues/199
+				// @see https://github.com/arsiba/tofulint-ruleset-opentofu/issues/199
 				logger.Debug("Failed to evaluate key. The key will be ignored", "range", expr.Range(), "error", err.Error())
 				continue
 			}
