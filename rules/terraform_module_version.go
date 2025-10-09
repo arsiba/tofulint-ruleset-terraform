@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"regexp"
 
+	"github.com/arsiba/tofulint-ruleset-terraform/project"
+	"github.com/arsiba/tofulint-ruleset-terraform/terraform"
 	tfaddr "github.com/hashicorp/terraform-registry-address"
 	"github.com/terraform-linters/tflint-plugin-sdk/tflint"
-	"github.com/terraform-linters/tflint-ruleset-terraform/project"
-	"github.com/terraform-linters/tflint-ruleset-terraform/terraform"
 )
 
 // SemVer regexp with optional leading =

@@ -3,13 +3,13 @@ package rules
 import (
 	"fmt"
 
+	"github.com/arsiba/tofulint-ruleset-terraform/project"
+	"github.com/arsiba/tofulint-ruleset-terraform/terraform"
 	"github.com/hashicorp/hcl/v2"
 	tfaddr "github.com/hashicorp/terraform-registry-address"
 	"github.com/terraform-linters/tflint-plugin-sdk/hclext"
 	tfsdk "github.com/terraform-linters/tflint-plugin-sdk/terraform"
 	"github.com/terraform-linters/tflint-plugin-sdk/tflint"
-	"github.com/terraform-linters/tflint-ruleset-terraform/project"
-	"github.com/terraform-linters/tflint-ruleset-terraform/terraform"
 	"github.com/zclconf/go-cty/cty"
 )
 

@@ -5,11 +5,11 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/arsiba/tofulint-ruleset-terraform/project"
+	"github.com/arsiba/tofulint-ruleset-terraform/terraform"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/terraform-linters/tflint-plugin-sdk/hclext"
 	"github.com/terraform-linters/tflint-plugin-sdk/tflint"
-	"github.com/terraform-linters/tflint-ruleset-terraform/project"
-	"github.com/terraform-linters/tflint-ruleset-terraform/terraform"
 )
 
 // TerraformNamingConventionRule checks whether blocks follow naming convention
