@@ -201,8 +201,8 @@ func generateReleaseNote(old string, new string, savedPath string) error {
 
 	note, _, err := client.Repositories.GenerateReleaseNotes(
 		context.Background(),
-		"terraform-linters",
-		"tflint-ruleset-terraform",
+		"arsiba",
+		"tofulint-ruleset-terraform",
 		&github.GenerateNotesOptions{
 			TagName:         tagName,
 			PreviousTagName: &previousTagName,
